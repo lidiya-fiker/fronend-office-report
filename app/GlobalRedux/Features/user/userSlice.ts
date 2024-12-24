@@ -53,7 +53,10 @@ const userSlice = createSlice({
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.user = null;
-        if (action.error.message === "Request failed with status code 401") {
+        if (
+          action.error.message === "Request failed with status code 401" ||
+          "Request failed with status code 400"
+        ) {
           state.error = "Access Denied! Invalid Credentials";
         } else {
           state.error = action.error.message || "An Unknown error occurred";

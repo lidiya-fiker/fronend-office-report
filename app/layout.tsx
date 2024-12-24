@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Providers } from "./GlobalRedux/provider";
+import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 export default function RootLayout({
   children,
 }: {
@@ -7,9 +8,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <ColorSchemeScript />
+      </head>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <MantineProvider>{children}</MantineProvider>
+        </Providers>
       </body>
     </html>
   );
