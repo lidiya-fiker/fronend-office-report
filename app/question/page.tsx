@@ -18,8 +18,16 @@ export default function QuestionsPage() {
   const [questions, setQuestions] = useState<
     { id: number; title: string; details: string }[]
   >([
-    { id: 1, title: "Quarterly Report", details: "Prepare the Q4 financial report." },
-    { id: 2, title: "Meeting Notes", details: "Summarize the last board meeting." },
+    {
+      id: 1,
+      title: "Quarterly Report",
+      details: "Prepare the Q4 financial report.",
+    },
+    {
+      id: 2,
+      title: "Meeting Notes",
+      details: "Summarize the last board meeting.",
+    },
   ]);
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -47,8 +55,8 @@ export default function QuestionsPage() {
   };
 
   return (
-    <Container size="xl" px="md" mt="lg" >
-      <Stack p="md">
+    <Container size="xl" px="md" mt="lg">
+      <Stack p="md" m="xl">
         {questions.map((question) => (
           <Box
             key={question.id}
@@ -56,14 +64,13 @@ export default function QuestionsPage() {
             style={{
               backgroundColor: "white",
               border: "1px solid green",
-              boxShadow: "2px 14px 16px rgba(0, 0, 0, 0.1)",
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
               width: "100%",
               borderRadius: "8px", // Applying border radius through style
-            }}
-          >
+            }}>
             <Flex justify="space-between" align="center">
               <Box>
-                <Text  w="500" size="lg" mb="xs" c="black">
+                <Text w="500" size="lg" mb="xs" c="black">
                   {question.title}
                 </Text>
                 <Text c="black" size="sm">
@@ -75,8 +82,7 @@ export default function QuestionsPage() {
                   variant="outline"
                   color="green"
                   size="xs"
-                  onClick={() => console.log("Edit button clicked!")}
-                >
+                  onClick={() => console.log("Edit button clicked!")}>
                   <IconEdit size={16} style={{ marginRight: 8 }} />
                   Edit
                 </Button>
@@ -84,8 +90,7 @@ export default function QuestionsPage() {
                   variant="outline"
                   color="red"
                   size="xs"
-                  onClick={() => handleDelete(question.id)}
-                >
+                  onClick={() => handleDelete(question.id)}>
                   <IconTrash size={16} style={{ marginRight: 8 }} />
                   Delete
                 </Button>
@@ -101,14 +106,12 @@ export default function QuestionsPage() {
           position: "absolute",
           bottom: "30px", // Adjust the distance from the bottom
           right: "30px", // Adjust the distance from the right
-        }}
-      >
+        }}>
         <Button
           radius="xl"
           size="lg"
           color="teal"
-          onClick={() => setModalOpen(true)}
-        >
+          onClick={() => setModalOpen(true)}>
           <IconPlus size={20} style={{ marginRight: 8 }} />
           <h3>Add Question</h3>
         </Button>
@@ -119,9 +122,7 @@ export default function QuestionsPage() {
         opened={isModalOpen}
         onClose={() => setModalOpen(false)}
         title="Add New Question"
-        c="black"
-       
-      >
+        c="black">
         <TextInput
           label="Question Title"
           placeholder="Enter question title"
