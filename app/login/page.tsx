@@ -9,14 +9,13 @@ import {
   Stack,
   TextInput,
 } from "@mantine/core";
-import { useForm } from "@mantine/form";
 import React, { useState, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../GlobalRedux/Features/user/userSlice";
 import { RootState, AppDispatch } from "../GlobalRedux/store";
 import { useRouter } from "next/navigation";
 
-export default function page(props: PaperProps) {
+export default function page() {
   //states
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -77,8 +76,7 @@ export default function page(props: PaperProps) {
         radius="md"
         p="xl"
         withBorder
-        className="w-full max-w-md shadow-lg"
-        {...props}>
+        className="w-full max-w-md shadow-lg">
         <Divider label="LOG IN" labelPosition="center" my="lg" />
 
         <form onSubmit={handleLoginEvent}>
