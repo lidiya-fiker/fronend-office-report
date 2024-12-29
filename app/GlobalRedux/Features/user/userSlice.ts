@@ -5,6 +5,7 @@ import axios from "axios";
 interface User {
   username: string;
   password: string;
+  profilePicture?: string;
 }
 
 interface UserState {

@@ -14,7 +14,8 @@ export default function NavLink({ href, children }) {
       href={href}
       style={{
         fontWeight: isActive ? "bold" : "normal",
-        color: isActive ? "blue" : "black",
+        color: isActive ? "#54ba4f" : "black",
+        textDecoration: "none",
       }}>
       {children}
     </Anchor>
