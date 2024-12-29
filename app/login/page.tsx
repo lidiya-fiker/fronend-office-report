@@ -9,6 +9,7 @@ import {
   Stack,
   TextInput,
 } from "@mantine/core";
+
 import React, { useState, FormEvent } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../GlobalRedux/Features/user/userSlice";
@@ -78,7 +79,6 @@ export default function page() {
         withBorder
         className="w-full max-w-md shadow-lg">
         <Divider label="LOG IN" labelPosition="center" my="lg" />
-
         <form onSubmit={handleLoginEvent}>
           <Stack>
             <TextInput
@@ -90,7 +90,7 @@ export default function page() {
               error={errors.username}
               radius="md"
             />
-
+            
             <PasswordInput
               required
               label="Password"
