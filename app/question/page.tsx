@@ -1,5 +1,6 @@
 "use client";
-
+import { useHover } from '@mantine/hooks';
+import { useElementSize } from '@mantine/hooks';
 import {
   Box,
   Button,
@@ -10,11 +11,14 @@ import {
   Text,
   TextInput,
   Textarea,
+  rem,
 } from "@mantine/core";
 import { useState } from "react";
 import { IconEdit, IconTrash, IconPlus } from "@tabler/icons-react";
 
 export default function QuestionsPage() {
+    const { hovered, ref } = useHover();
+    const {  width, height } = useElementSize();
   const [questions, setQuestions] = useState<
     { id: number; title: string; details: string }[]
   >([
@@ -103,7 +107,7 @@ export default function QuestionsPage() {
       {/* Floating Add Button positioned at bottom-right corner using absolute positioning */}
       <Box
         style={{
-          position: "absolute",
+            position: "fixed",
           bottom: "30px", // Adjust the distance from the bottom
           right: "30px", // Adjust the distance from the right
         }}>
@@ -124,6 +128,7 @@ export default function QuestionsPage() {
         title="Add New Question"
         c="black">
         <TextInput
+       
           label="Question Title"
           placeholder="Enter question title"
           value={newQuestionTitle}
@@ -133,12 +138,16 @@ export default function QuestionsPage() {
         />
         <Textarea
           label="Question Details"
+    
           placeholder="Enter question details"
           value={newQuestionDetails}
           onChange={(e) => setNewQuestionDetails(e.currentTarget.value)}
           required
+          style={{
+            width: "100%", // Ensure the textarea takes up the full width
+          }}
         />
-        <Button mt="md" fullWidth onClick={handleAddQuestion}>
+        <Button mt="md" fullWidth onClick={handleAddQuestion} color='green'>
           Add Question
         </Button>
       </Modal>
