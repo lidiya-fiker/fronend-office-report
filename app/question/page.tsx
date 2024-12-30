@@ -29,6 +29,11 @@ export default function QuestionsPage() {
     { id: 2, title: "Meeting Notes", details: "Summarize the last board meeting." },
     { id: 3, title: "daily work report", details: "Prepare the Q4 financial report." },
     { id: 5, title: "report", details: "Summarize the last board meeting." },
+    { id: 5, title: "report", details: "Summarize the last board meeting." },
+    { id: 2, title: "Meeting Notes", details: "Summarize the last board meeting." },
+    { id: 3, title: "daily work report", details: "Prepare the Q4 financial report." },
+    { id: 5, title: "report", details: "Summarize the last board meeting." },
+
   ]);
 
   const [isModalOpen, setModalOpen] = useState(false);
