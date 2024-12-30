@@ -73,7 +73,10 @@ export default function TableSelection() {
 
   return (
     <>
-      <Group align="center" justify="center" style={{ marginTop: "1px", marginBottom:"10px" }}>
+      <Group
+        align="center"
+        justify="center"
+        style={{ marginTop: "1px", marginBottom: "10px" }}>
         <Paper p="md" style={{ width: "800px" }}>
           <TextInput
             placeholder="Search"
