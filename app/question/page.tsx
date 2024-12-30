@@ -1,4 +1,5 @@
 "use client";
+
 import { useHover } from "@mantine/hooks";
 import { useElementSize } from "@mantine/hooks";
 import {
@@ -99,9 +100,11 @@ export default function QuestionsPage() {
     { id: 98, title: "report", details: "Summarize the last board meeting." },
   ]);
 
+  // Modal and form state for adding or editing questions
   const [isModalOpen, setModalOpen] = useState(false);
   const [newQuestionTitle, setNewQuestionTitle] = useState("");
   const [newQuestionDetails, setNewQuestionDetails] = useState("");
+  const [editingQuestionId, setEditingQuestionId] = useState<number | null>(null);
 
   const handleAddQuestion = () => {
     if (newQuestionTitle.trim() && newQuestionDetails.trim()) {
@@ -119,8 +122,39 @@ export default function QuestionsPage() {
     }
   };
 
+  const handleEditQuestion = () => {
+    if (newQuestionTitle.trim() && newQuestionDetails.trim() && editingQuestionId !== null) {
+      setQuestions((prevQuestions) =>
+        prevQuestions.map((question) =>
+          question.id === editingQuestionId
+            ? { ...question, title: newQuestionTitle, details: newQuestionDetails }
+            : question
+        )
+      );
+      setEditingQuestionId(null);
+      setNewQuestionTitle("");
+      setNewQuestionDetails("");
+      setModalOpen(false);
+    }
+  };
+
   const handleDelete = (id: number) => {
     setQuestions(questions.filter((question) => question.id !== id));
+  };
+
+  const handleEditClick = (question: { id: number; title: string; details: string }) => {
+    setEditingQuestionId(question.id);
+    setNewQuestionTitle(question.title);
+    setNewQuestionDetails(question.details);
+    setModalOpen(true);
+  };
+
+  const handleAddClick = () => {
+    // Reset the form for adding a new question
+    setEditingQuestionId(null);
+    setNewQuestionTitle("");
+    setNewQuestionDetails("");
+    setModalOpen(true);
   };
 
   return (
@@ -151,7 +185,7 @@ export default function QuestionsPage() {
                   variant="outline"
                   color="green"
                   size="xs"
-                  onClick={() => console.log("Edit button clicked!")}>
+                  onClick={() => handleEditClick(question)}>
                   <IconEdit size={16} style={{ marginRight: 8 }} />
                   Edit
                 </Button>
@@ -160,10 +194,7 @@ export default function QuestionsPage() {
                   color="red"
                   size="xs"
                   onClick={() => handleDelete(question.id)}>
-                  <IconTrash
-                    size={16}
-                    style={{ marginRight: 8, position: "sticky" }}
-                  />
+                  <IconTrash size={16} style={{ marginRight: 8, position: "sticky" }} />
                   Delete
                 </Button>
               </Flex>
@@ -174,66 +205,72 @@ export default function QuestionsPage() {
 
       {/* Floating Add Button positioned at bottom-right corner using absolute positioning */}
       <Box
-        style={{
-          position: "fixed",
-          bottom: "30px", // Adjust the distance from the bottom
-          right: "30px", // Adjust the distance from the right
-          zIndex: 10,
-        }}>
-        <Button
-          radius="xl"
-          size="lg"
-          onClick={() => setModalOpen(true)}
-          color="#59b556"
-          ref={ref}
-          style={{
-            padding: "12px", // Add padding to make it look better
-            width: "60px", // Set fixed width to make it circular
-            height: "60px", // Set fixed height to make it circular
-            display: "flex", // Use flexbox to center the icon
-            justifyContent: "center", // Center content horizontally
-            alignItems: "center", // Center content vertically
-          }}>
-          <IconPlus
-            size={30}
-            style={{
-              marginRight: 2,
-            }}
-          />
-        </Button>
-      </Box>
+  style={{
+    position: "fixed",
+    bottom: "30px", // Keeps the button fixed at the bottom
+    right: "30px", // Keeps the button fixed to the right
+    zIndex: 10, // Ensure the button is always above other content
+  }}>
+  <Button
+    radius="xl"
+    size="lg"
+    onClick={handleAddClick} // Trigger "Add" logic
+    color="#59b556"
+    ref={ref}
+    style={{
+      width: "60px", // Set fixed width to make it circular
+      height: "60px", // Set fixed height to make it circular
+      display: "flex", // Use flexbox to center the icon
+      justifyContent: "center", // Center content horizontally
+      alignItems: "center", // Center content vertically
+      padding: 0, // Remove any padding that could affect positioning
+      transition: "all 0.3s ease-in-out", // Smooth transition for hover effect (if any)
+      zIndex: 100, // Make sure the button stays on top
+    }}>
+    <IconPlus
+      size={30}
+      style={{
+        marginRight: 2,
+      }}
+    />
+  </Button>
+</Box>
 
-      {/* Add Question Modal */}
-      <Modal
-        opened={isModalOpen}
-        onClose={() => setModalOpen(false)}
-        title="Add New Question"
-        centered
-        c="black"
-        size="lg">
-        <TextInput
-          label="Question Title"
-          placeholder="Enter question title"
-          value={newQuestionTitle}
-          onChange={(e) => setNewQuestionTitle(e.currentTarget.value)}
-          required
-          mb="md"
-        />
+{/* Add Question Modal */}
+<Modal
+  opened={isModalOpen}
+  onClose={() => setModalOpen(false)}
+  title="Add New Question"
+  centered
+  c="black"
+  size="lg"
+  style={{
+    zIndex: 1000, // Ensure the modal stays above everything else
+  }}>
+  <TextInput
+    label="Question Title"
+    placeholder="Enter question title"
+    value={newQuestionTitle}
+    onChange={(e) => setNewQuestionTitle(e.currentTarget.value)}
+    required
+    mb="md"
+  />
 
-        <Textarea
-          label="Question Details"
-          placeholder="Enter question details"
-          value={newQuestionDetails}
-          onChange={(e) => setNewQuestionDetails(e.currentTarget.value)}
-          required
-          style={{
-            width: "100%", // Ensure the textarea takes up the full width
-          }}
-        />
-        <Button mt="md" fullWidth onClick={handleAddQuestion} color="green">
-          Add Question
-        </Button>
-      </Modal>
+  <Textarea
+    label="Question Details"
+    placeholder="Enter question details"
+    value={newQuestionDetails}
+    onChange={(e) => setNewQuestionDetails(e.currentTarget.value)}
+    required
+    style={{
+      width: "100%", // Ensure the textarea takes up the full width
+    }}
+  />
+  <Button mt="md" fullWidth onClick={handleAddQuestion} color="green">
+    Add Question
+  </Button>
+</Modal>
+
     </Container>
   );
 }
