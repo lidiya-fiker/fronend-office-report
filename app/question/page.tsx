@@ -24,6 +24,11 @@ export default function QuestionsPage() {
   >([
     { id: 1, title: "Quarterly Report", details: "Prepare the Q4 financial report." },
     { id: 2, title: "Meeting Notes", details: "Summarize the last board meeting." },
+    { id: 3, title: "daily work report", details: "Prepare the Q4 financial report." },
+    { id: 5, title: "report", details: "Summarize the last board meeting." },
+    { id: 2, title: "Meeting Notes", details: "Summarize the last board meeting." },
+    { id: 3, title: "daily work report", details: "Prepare the Q4 financial report." },
+    { id: 5, title: "report", details: "Summarize the last board meeting." },
   ]);
 
   const [isModalOpen, setModalOpen] = useState(false);
@@ -111,15 +116,14 @@ export default function QuestionsPage() {
         <Button
           radius="xl"
           size="lg"
-        //   color="teal"
           onClick={() => setModalOpen(true)}
           ref={ref} 
           style={{
             transition: "background-color 0.3s, color 0.3s opacity 0.3s",
             backgroundColor: hovered
-            ? "rgba(0, 128, 0, 0.7)" // Apply opacity to green background (RGBA)
+            ? "rgba(0, 128, 0, 0)" // Apply opacity to green background (RGBA)
             : "green",
-            color:hovered? "white":"white"// Change bg color when hovered
+            color:hovered? "green":"white"// Change bg color when hovered
           // Change text/icon color to green when hovered
           }}
         >
@@ -143,7 +147,6 @@ export default function QuestionsPage() {
       >
 
         <TextInput
-       
           label="Question Title"
           placeholder="Enter question title"
           value={newQuestionTitle}
@@ -151,9 +154,9 @@ export default function QuestionsPage() {
           required
           mb="md"
         />
+
         <Textarea
           label="Question Details"
-    
           placeholder="Enter question details"
           value={newQuestionDetails}
           onChange={(e) => setNewQuestionDetails(e.currentTarget.value)}
