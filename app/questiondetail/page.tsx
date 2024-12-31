@@ -10,13 +10,13 @@ export default function ReportDetailPage() {
       id: 1,
       title: "Quarterly Report",
       details: "Prepare the Q4 financial report.",
-      answer: "This is the answer to the quarterly report.",
+      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus eleifend elit, vel interdum sem bibendum feugiat. Donec scelerisque ut eros et gravida. Mauris tincidunt sapien elit, feugiat tincidunt justo luctus vel. Aliquam auctor neque dapibus, dictum nisi non, aliquet magna. In ultrices nisl id tortor vestibulum ultricies. Maecenas accumsan pulvinar turpis. Ut ut elementum sapien. Integer quis nisi tellus. Morbi vel hendrerit nunc. Nunc consectetur sem augue, vitae pretium nulla commodo vel. Proin condimentum arcu vitae urna sagittis commodo. Phasellus malesuada lacus at ullamcorper condimentum. ",
     },
     {
       id: 2,
       title: "Meeting Notes",
       details: "Summarize the last board meeting.",
-      answer: "This is the answer to the meeting notes.",
+      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris rhoncus eleifend elit, vel interdum sem bibendum feugiat. Donec scelerisque ut eros et gravida. Mauris tincidunt sapien elit, feugiat tincidunt justo luctus vel. Aliquam auctor neque dapibus, dictum nisi non, aliquet magna. In ultrices nisl id tortor vestibulum ultricies. Maecenas accumsan pulvinar turpis. Ut ut elementum sapien. Integer quis nisi tellus. Morbi vel hendrerit nunc. Nunc consectetur sem augue, vitae pretium nulla commodo vel. Proin condimentum arcu vitae urna sagittis commodo. Phasellus malesuada lacus at ullamcorper condimentum. ",
     },
     // Add more questions as needed
   ]);
